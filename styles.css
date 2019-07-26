@@ -12,13 +12,6 @@ main {
   height: 100vh;
 }
 
-header {
-  background-color: #1F1F3D;
-  display: flex;
-  height: 10vh;
-  justify-content: space-between;
-  padding: 10px;
-}
 
 aside {
   background-color: #587A8A;
@@ -29,6 +22,7 @@ aside {
 
 section {
   background-color: #F3F6F7;
+  display: grid;
   height:100%;
   width: 70%;
 }
@@ -76,6 +70,13 @@ button {
   width: 100%;
 }
 
+.body__header {
+  background-color: #1F1F3D;
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  padding: 10px;
+}
 .header__div--img {
   background-color: #F2F6F7;
 }
@@ -109,4 +110,35 @@ li {
 
 .form__btn--clear {
   margin: 10px 0;
+}
+
+.section__card {
+  background-color: peachpuff;
+  border: 3px solid #C7D3D8;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  width: 200px;
+}
+
+.card__h2 {
+  border-bottom: 2px solid #C7D3D8;
+  font-size: 1.2em;
+  padding: 5px;
+}
+
+.card__ul {
+  height: 100%;
+  padding: 0;
+}
+
+.ul__li {
+  display: flex;
+  color: black;
+}
+
+.card__footer {
+  border: 2px solid #C7D3D8;
+  display: flex;
+  justify-content: space-between;
 }
