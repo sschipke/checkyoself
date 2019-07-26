@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Check Yo'Self</title>
+      <link href="styles.css" type="text/css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300, 400,400i,700,800&display=swap" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+      <header>
+        <h1 class="header__h1">CHECK <span class="header__span">YO'</span>SELF</h1>
+        <div class="header__div">
+          <img src="images/search.svg" class="header__div--img" alt="search image icon">
+          <input type="search" placeholder="Search" class="header__input--search">
+        </div>
+      </header>
+      <main>
+        <aside>
+          <form class="aside__form">
+            <label class="form__label--title" for="title-input">Task Title</label>
+            <input type="text" id="title-input">
+            <output class="form__output">
+            </output>
+            <label for="task" class="form__label--task"> Task Item</label>
+            <div class="form__div">
+              <input type="text" id="task">
+              <img src="images/plus.svg" class="form__div--img" alt="Add task icon">
+            </div>
+            <button type="button" class="form__btn--make">Make Task List</button>
+            <button type="button" class="form__btn--clear">Clear All</button>
+          </form>
+          <button type="button"class="aside__button">Filter by Urgency</button>
+        </aside>
+        <section>
+        </section>
+      </main>
+    </body>
+    <script src="todo-list.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+</html>
