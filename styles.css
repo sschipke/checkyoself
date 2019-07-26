@@ -63,6 +63,7 @@ label {
 
 input {
   height: 25px;
+  outline: none;
 }
 
 button {
@@ -94,6 +95,16 @@ button {
 
 #task {
   width: 80%;
+}
+
+output {
+  margin: auto 10px;
+}
+
+li {
+  display: flex;
+  text-decoration: none;
+  color: #FFFFFF;
 }
 
 .form__btn--clear {
