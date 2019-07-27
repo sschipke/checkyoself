@@ -6,8 +6,8 @@ class TodoList {
     this.tasks = obj.tasks;
     this.urgent = obj.urgent || false;
   }
-  savetoStorage() {
-
+  savetoStorage(array) {
+  localStorage.setItem('todoArray', JSON.stringify(array))
   }
 
   deleteFromStorage() {
@@ -19,6 +19,6 @@ class TodoList {
   }
 
   updateTask() {
-    
+
   }
 }
