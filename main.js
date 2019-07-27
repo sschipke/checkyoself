@@ -13,10 +13,11 @@ addTaskBtn.addEventListener('click', addTaskHandler);
 output.addEventListener('click', removeTaskItem);
 clearBtn.addEventListener('click', clearAll);
 makeTodoBtn.addEventListener('click', createTodo)
+rightSect.addEventListener('click', sectionHandler)
 window.addEventListener('load', handlePageload)
 //Handlers
 
-function addTaskHandler(){
+function addTaskHandler(event){
   createTaskObj();
 }
 
@@ -29,6 +30,10 @@ function handlePageload() {
   createTasksArray();
   reInstTodoArray();
   displayCards(todoArray)
+}
+
+function sectionHandler() {
+  toggleTaskDone(event);
 }
 
 
@@ -119,4 +124,48 @@ function displayCards(array){
   array.forEach(function(todos){
     displayToDo(todos)
   })
+}
+
+function testy(e){
+  if (e.target.classList.contains('li__img--check')) {
+  }
+}
+
+function findTargetIndex(e, targetArray, className) {
+  var id = e.target.closest('.' + className).dataset.id;
+  var targetIndex = targetArray.findIndex(function(obj) {
+    return parseInt(id) === obj.id
+  })
+  return targetIndex;
+}
+
+function toggleTaskDone(e){
+  var todoIndex = findTargetIndex(e, todoArray, 'section__card');
+  var listIndex = findTargetIndex(e, todoArray[todoIndex].tasks, 'taskItem');
+  var task = todoArray[todoIndex].tasks[listIndex];
+  var tasksArray = todoArray[todoIndex].tasks;
+  task.done = !task.done;
+  toggleCheckbox(e, task, listIndex);
+  checkDeleteButton(e, tasksArray);
+}
+
+function checkDeleteButton(e,tasksArray) {
+  if (tasksArray.every(function(tasks){
+    return tasks.done === true
+  })) {
+    e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete.svg')
+  } else {e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete-active.svg')
+  }
+}
+
+function toggleCheckbox(e, task, liIndex){
+  var checked = 'images/checkbox-active.svg';
+  var unchecked = 'images/checkbox.svg';
+  var imgArray = e.target.closest('.section__card').querySelectorAll('.li__img--check');
+  targetImage = imgArray[liIndex];
+  if (task.done === true) {
+    targetImage.setAttribute('src', checked)
+  } else {
+    targetImage.setAttribute('src', unchecked)
+  }
 }
