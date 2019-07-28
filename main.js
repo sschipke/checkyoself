@@ -1,7 +1,7 @@
 // Variables & Query Selector
 var titleIn = document.querySelector('#title');
 var taskItem = document.querySelector('#task');
-var addTaskBtn = document.querySelector('.form__div--img');
+var addTaskBtn = document.querySelector('.form__btn--task');
 var makeTodoBtn = document.querySelector('.form__btn--make');
 var output = document.querySelector('output');
 var clearBtn = document.querySelector('.form__btn--clear')
@@ -28,7 +28,6 @@ function addTaskHandler(event){
 function makeTodoBtnHandler(){
   var tasksArray = getTasksArray();
   if (titleIn.value === '' || tasksArray.length === 0) {
-    return 
   } else {
   createTodo();
   showMessage(todoArray, 'Start by making some tasks!');
@@ -36,6 +35,7 @@ function makeTodoBtnHandler(){
   createTasksArray();
   }
 }
+
 
 function handlePageload() {
   createTasksArray();
@@ -119,7 +119,7 @@ function reInstTodoArray() {
 }
 
 function displayToDo(obj){
-  var deletePath = obj.delete ? 'images/delete.svg' : 'images/delete-active.svg';
+  var deletePath = obj.delete ? 'images/delete-active.svg' : 'images/delete.svg';
   var deleteClass = obj.delete ? 'delete--card' : ''
   var urgentPath = obj.urgent ? 'images/urgent-active.svg' :'images/urgent.svg';
   var urgentClass = obj.urgent ? 'urgent' : ''
@@ -184,12 +184,12 @@ function checkDeleteButton(e,tasksArray, todo) {
 }
 
 function enableDeleteBtn(button) {
-  button.setAttribute('src', 'images/delete.svg');
+  button.setAttribute('src', 'images/delete-active.svg');
   button.classList.add('delete--card');
 }
 
 function disableDeleteBtn(button) {
-  button.setAttribute('src', 'images/delete-active.svg');
+  button.setAttribute('src', 'images/delete.svg');
   button.classList.remove('delete--card');
 }
 
