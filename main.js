@@ -37,6 +37,7 @@ function handlePageload() {
 function sectionHandler() {
   toggleTaskDone(event);
   removeTodo(event);
+  updateUrgency(event);
 }
 
 
@@ -200,3 +201,12 @@ function showMessage(array, message) {
     displayCards(array)
   }
 }
+
+function updateUrgency(e) {
+if (e.target.classList.contains('img--urgent')) {
+  var targetIndex = findTargetIndex(e, todoArray, 'section__card');
+  var targetTodo = todoArray[targetIndex];
+  targetTodo.updateToDo(todoArray);
+  }
+}
+

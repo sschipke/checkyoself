@@ -16,8 +16,9 @@ class TodoList {
     this.savetoStorage(todoArray);
   }
 
-  updateToDo(){
-
+  updateToDo(array){
+    this.urgent = !this.urgent;
+    this.savetoStorage(array)
   }
 
   updateTask() {
