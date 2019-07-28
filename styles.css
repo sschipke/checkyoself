@@ -40,7 +40,7 @@ div {
 }
 
 img {
-  height: 25px;
+  height: 35px;
   padding: 4px;
 }
 
@@ -141,4 +141,8 @@ li {
   border: 2px solid #C7D3D8;
   display: flex;
   justify-content: space-between;
+}
+
+.urgent {
+  background-color: orange;
 }

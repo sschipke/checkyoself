@@ -108,13 +108,15 @@ function reInstTodoArray() {
 }
 
 function displayToDo(obj){
-  var deletePath = obj.delete ? 'images/delete-active.svg' : 'images/delete.svg'
+  var deletePath = obj.delete ? 'images/delete-active.svg' : 'images/delete.svg';
+  var urgentPath = obj.urgent ? 'images/urgent-active.svg' :'images/urgent.svg';
+  var urgentClass = obj.urgent ? 'urgent' : ''
   rightSect.insertAdjacentHTML('afterbegin', 
-  `<card class="section__card" data-id="${obj.id}">
+  `<card class="section__card ${urgentClass}" data-id="${obj.id}">
             <h2 class="card__h2">${obj.title}</h2>
                 ${populateTasks(obj.tasks)}</ul>
             <footer class="card__footer">
-              <img src="images/urgent.svg" class="img--urgent" alt="urgent to do icon">
+              <img src="${urgentPath}" class="img--urgent" alt="urgent to do icon">
               <img src="${deletePath}" class="image--delete" alt="to do delete icon">
             </footer>
           </card>`)
@@ -184,8 +186,8 @@ function removeTodo(e){
     var targetIndex = findTargetIndex(e, todoArray, 'section__card');
     todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
     e.target.closest('.section__card').remove();
+    showMessage(todoArray, 'Start by making some ToDos')
   }
-  showMessage(todoArray, 'Start by making some ToDos')
 }
 
 function clearCards() {
@@ -207,6 +209,17 @@ if (e.target.classList.contains('img--urgent')) {
   var targetIndex = findTargetIndex(e, todoArray, 'section__card');
   var targetTodo = todoArray[targetIndex];
   targetTodo.updateToDo(todoArray);
+  changeUrgentStyle(e, targetTodo);
   }
 }
 
+function changeUrgentStyle(e, targetTodo) {
+  if (targetTodo.urgent === true) {
+    e.target.setAttribute('src', 'images/urgent-active.svg');
+    e.target.closest('.section__card').classList.add('urgent');
+    console.log(e.target);
+  } else {
+    e.target.setAttribute('src', 'images/urgent.svg');
+    e.target.closest('.section__card').classList.remove('urgent');
+  }
+}
