@@ -108,7 +108,8 @@ function reInstTodoArray() {
 }
 
 function displayToDo(obj){
-  var deletePath = obj.delete ? 'images/delete-active.svg' : 'images/delete.svg';
+  var deletePath = obj.delete ? 'images/delete.svg' : 'images/delete-active.svg';
+  var deleteClass = obj.delete ? 'delete--card' : ''
   var urgentPath = obj.urgent ? 'images/urgent-active.svg' :'images/urgent.svg';
   var urgentClass = obj.urgent ? 'urgent' : ''
   rightSect.insertAdjacentHTML('afterbegin', 
@@ -117,7 +118,7 @@ function displayToDo(obj){
                 ${populateTasks(obj.tasks)}</ul>
             <footer class="card__footer">
               <img src="${urgentPath}" class="img--urgent" alt="urgent to do icon">
-              <img src="${deletePath}" class="image--delete" alt="to do delete icon">
+              <img src="${deletePath}" class="image--delete ${deleteClass}" alt="to do delete icon">
             </footer>
           </card>`)
 }
@@ -159,14 +160,26 @@ function toggleTaskDone(e){
 }
 
 function checkDeleteButton(e,tasksArray, todo) {
+  var deleteBtn = e.target.closest('.section__card').querySelector('.image--delete')
   if (tasksArray.every(function(tasks){
     return tasks.done === true
   })) {
-    e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete.svg');
+    enableDeleteBtn(deleteBtn);
     todo.delete = true;
-  } else {e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete-active.svg');
+  } else {
+  disableDeleteBtn(deleteBtn);
   todo.delete = false;
   }
+}
+
+function enableDeleteBtn(button) {
+  button.setAttribute('src', 'images/delete.svg');
+  button.classList.add('delete--card');
+}
+
+function disableDeleteBtn(button) {
+  button.setAttribute('src', 'images/delete-active.svg');
+  button.classList.remove('delete--card');
 }
 
 function toggleCheckbox(e, task, liIndex){
@@ -182,7 +195,7 @@ function toggleCheckbox(e, task, liIndex){
 }
 
 function removeTodo(e){
-  if (e.target.classList.contains('image--delete')){
+  if (e.target.classList.contains('delete--card')){
     var targetIndex = findTargetIndex(e, todoArray, 'section__card');
     todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
     e.target.closest('.section__card').remove();
@@ -217,7 +230,6 @@ function changeUrgentStyle(e, targetTodo) {
   if (targetTodo.urgent === true) {
     e.target.setAttribute('src', 'images/urgent-active.svg');
     e.target.closest('.section__card').classList.add('urgent');
-    console.log(e.target);
   } else {
     e.target.setAttribute('src', 'images/urgent.svg');
     e.target.closest('.section__card').classList.remove('urgent');
