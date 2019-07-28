@@ -17,15 +17,24 @@ rightSect.addEventListener('click', sectionHandler)
 window.addEventListener('load', handlePageload)
 //Handlers
 
-function addTaskHandler(event){
+function addTaskHandler(event){ 
+  if (taskItem.value === '') {
+    return
+  } else {
   createTaskObj();
+  }
 }
 
 function makeTodoBtnHandler(){
+  var tasksArray = getTasksArray();
+  if (titleIn.value === '' || tasksArray.length === 0) {
+    return 
+  } else {
   createTodo();
   showMessage(todoArray, 'Start by making some tasks!');
   clearAll();
   createTasksArray();
+  }
 }
 
 function handlePageload() {
@@ -82,6 +91,8 @@ function createTasksArray(){
 function pushToStorage(array){
   localStorage.setItem('tasksArray', JSON.stringify(array));
 }
+
+
 
 function clearAll() {
   output.innerHTML = '';
