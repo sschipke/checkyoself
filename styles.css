@@ -22,7 +22,7 @@ aside {
 
 section {
   background-color: #F3F6F7;
-  display: grid;
+  display: flex;
   height:100%;
   width: 70%;
 }
@@ -110,6 +110,11 @@ li {
 
 .form__btn--clear {
   margin: 10px 0;
+}
+
+.filter {
+  background-color: #EF4A23;
+  border: 2px solid #782616;
 }
 
 .section__card {

@@ -4,7 +4,8 @@ var taskItem = document.querySelector('#task');
 var addTaskBtn = document.querySelector('.form__btn--task');
 var makeTodoBtn = document.querySelector('.form__btn--make');
 var output = document.querySelector('output');
-var clearBtn = document.querySelector('.form__btn--clear')
+var clearBtn = document.querySelector('.form__btn--clear');
+var filterBtn = document.querySelector('.aside__button')
 var rightSect = document.querySelector('section');
 var todoArray = [];
 
@@ -14,6 +15,7 @@ output.addEventListener('click', removeTaskItem);
 clearBtn.addEventListener('click', clearAll);
 makeTodoBtn.addEventListener('click', makeTodoBtnHandler)
 rightSect.addEventListener('click', sectionHandler)
+filterBtn.addEventListener('click', filterHandler)
 window.addEventListener('load', handlePageload)
 //Handlers
 
@@ -36,17 +38,26 @@ function makeTodoBtnHandler(){
   }
 }
 
-
 function handlePageload() {
   createTasksArray();
   reInstTodoArray();
-  showMessage(todoArray, 'Start by making some tasks!');
+  showMessage(todoArray, 'Start by making some todos!');
 }
 
 function sectionHandler() {
   toggleTaskDone(event);
   removeTodo(event);
   updateUrgency(event);
+}
+
+function filterHandler(event) {
+  if (filterBtn.classList.contains('filter')) { 
+    deactivateFilterBtn();
+    showMessage(todoArray, 'Start by making some todos!')
+  } else {
+    activateFilterBtn();
+    filterByUrgent();
+  }
 }
 
 
@@ -245,4 +256,23 @@ function changeUrgentStyle(e, targetTodo) {
     e.target.setAttribute('src', 'images/urgent.svg');
     e.target.closest('.section__card').classList.remove('urgent');
   }
+}
+
+function filterByUrgent() {
+  clearCards();
+  var urgentArray = [];
+  todoArray.forEach(function(urgentTodos){
+    if (urgentTodos.urgent === true){
+      urgentArray.push(urgentTodos);
+    };
+  });
+  showMessage(urgentArray, 'Relax! No pending URGENT items.')
+}
+
+function activateFilterBtn() {
+  filterBtn.classList.add('filter');
+}
+
+function deactivateFilterBtn() {
+  filterBtn.classList.remove('filter')
 }
