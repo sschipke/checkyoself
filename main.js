@@ -12,7 +12,7 @@ var todoArray = [];
 addTaskBtn.addEventListener('click', addTaskHandler);
 output.addEventListener('click', removeTaskItem);
 clearBtn.addEventListener('click', clearAll);
-makeTodoBtn.addEventListener('click', createTodo)
+makeTodoBtn.addEventListener('click', makeTodoBtnHandler)
 rightSect.addEventListener('click', sectionHandler)
 window.addEventListener('load', handlePageload)
 //Handlers
@@ -24,6 +24,7 @@ function addTaskHandler(event){
 function makeTodoBtnHandler(){
   createTodo();
   clearAll();
+  createTasksArray();
 }
 
 function handlePageload() {
@@ -34,6 +35,7 @@ function handlePageload() {
 
 function sectionHandler() {
   toggleTaskDone(event);
+  removeTodo(event);
 }
 
 
@@ -55,12 +57,15 @@ function createTaskObj(){
     tasksArray.push(task);
     pushToStorage(tasksArray)
     addTask(task)
-    console.log(task)
   }
 
 function removeTaskItem(e) {
   if (e.target.classList.contains('li__img--dlt')) {
     e.target.closest('li').remove();
+    var tasksArray = getTasksArray();
+    var targetIndex = findTargetIndex(e, tasksArray, 'task-to-add');
+    tasksArray.splice(targetIndex, 1);
+    pushToStorage(tasksArray);
   }
 }
 
@@ -80,6 +85,7 @@ function clearAll() {
   output.innerHTML = '';
   title.value = '';
   taskItem.value = '';
+  console.log('yep')
 }
 
 function createTodo() {
@@ -101,13 +107,14 @@ function reInstTodoArray() {
 }
 
 function displayToDo(obj){
+  var deletePath = obj.delete ? 'images/delete-active.svg' : 'images/delete.svg'
   rightSect.insertAdjacentHTML('afterbegin', 
   `<card class="section__card" data-id="${obj.id}">
             <h2 class="card__h2">${obj.title}</h2>
                 ${populateTasks(obj.tasks)}</ul>
             <footer class="card__footer">
               <img src="images/urgent.svg" class="img--urgent" alt="urgent to do icon">
-              <img src="images/delete.svg" class="image--delete" alt="to do delete icon">
+              <img src="${deletePath}" class="image--delete" alt="to do delete icon">
             </footer>
           </card>`)
 }
@@ -115,7 +122,8 @@ function displayToDo(obj){
 function populateTasks(array){
   var uList = `<ul>`;
   array.forEach(function(task) {
-    uList += `<li class="taskItem" data-id="${task.id}"><img src="images/checkbox.svg" class="li__img--check" alt="Icon to check off task"> ${task.text} </li>`
+    var checkPath = task.done ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
+    uList += `<li class="taskItem" data-id="${task.id}"><img src="${checkPath}" class="li__img--check" alt="Icon to check off task"> ${task.text} </li>`
   })
   return uList
 }
@@ -124,11 +132,6 @@ function displayCards(array){
   array.forEach(function(todos){
     displayToDo(todos)
   })
-}
-
-function testy(e){
-  if (e.target.classList.contains('li__img--check')) {
-  }
 }
 
 function findTargetIndex(e, targetArray, className) {
@@ -140,21 +143,26 @@ function findTargetIndex(e, targetArray, className) {
 }
 
 function toggleTaskDone(e){
+  if (e.target.classList.contains('li__img--check')) {
   var todoIndex = findTargetIndex(e, todoArray, 'section__card');
   var listIndex = findTargetIndex(e, todoArray[todoIndex].tasks, 'taskItem');
   var task = todoArray[todoIndex].tasks[listIndex];
   var tasksArray = todoArray[todoIndex].tasks;
   task.done = !task.done;
   toggleCheckbox(e, task, listIndex);
-  checkDeleteButton(e, tasksArray);
+  checkDeleteButton(e, tasksArray, todoArray[todoIndex]);
+  todoArray[todoIndex].savetoStorage(todoArray);
+  }
 }
 
-function checkDeleteButton(e,tasksArray) {
+function checkDeleteButton(e,tasksArray, todo) {
   if (tasksArray.every(function(tasks){
     return tasks.done === true
   })) {
-    e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete.svg')
-  } else {e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete-active.svg')
+    e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete.svg');
+    todo.delete = true;
+  } else {e.target.closest('.section__card').querySelector('.image--delete').setAttribute('src', 'images/delete-active.svg');
+  todo.delete = false;
   }
 }
 
@@ -167,5 +175,13 @@ function toggleCheckbox(e, task, liIndex){
     targetImage.setAttribute('src', checked)
   } else {
     targetImage.setAttribute('src', unchecked)
+  }
+}
+
+function removeTodo(e){
+  if (e.target.classList.contains('image--delete')){
+    var targetIndex = findTargetIndex(e, todoArray, 'section__card');
+    todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
+    e.target.closest('.section__card').remove();
   }
 }
