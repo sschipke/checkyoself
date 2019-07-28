@@ -23,6 +23,7 @@ function addTaskHandler(event){
 
 function makeTodoBtnHandler(){
   createTodo();
+  showMessage(todoArray, 'Start by making some tasks!');
   clearAll();
   createTasksArray();
 }
@@ -30,7 +31,7 @@ function makeTodoBtnHandler(){
 function handlePageload() {
   createTasksArray();
   reInstTodoArray();
-  displayCards(todoArray)
+  showMessage(todoArray, 'Start by making some tasks!');
 }
 
 function sectionHandler() {
@@ -85,7 +86,6 @@ function clearAll() {
   output.innerHTML = '';
   title.value = '';
   taskItem.value = '';
-  console.log('yep')
 }
 
 function createTodo() {
@@ -93,7 +93,7 @@ function createTodo() {
   var todo = new TodoList({title:titleIn.value, tasks: tasksArray});
   todoArray.push(todo);
   todo.savetoStorage(todoArray);
-  displayToDo(todo)
+  showMessage(todoArray, 'Start by making some ToDos');
 }
 
 function reInstTodoArray() {
@@ -183,5 +183,20 @@ function removeTodo(e){
     var targetIndex = findTargetIndex(e, todoArray, 'section__card');
     todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
     e.target.closest('.section__card').remove();
+  }
+  showMessage(todoArray, 'Start by making some ToDos')
+}
+
+function clearCards() {
+  rightSect.innerHTML = ''
+}
+
+function showMessage(array, message) {
+  if (array.length === 0) {
+    rightSect.insertAdjacentHTML('afterbegin', `<h3 id='h3tag'>${message}</h3>`);
+    return;
+  } else {
+    clearCards();
+    displayCards(array)
   }
 }
