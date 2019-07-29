@@ -1,4 +1,5 @@
 // Variables & Query Selector
+var searchInput = document.querySelector('.header__input--search')
 var titleIn = document.querySelector('#title');
 var taskItem = document.querySelector('#task');
 var addTaskBtn = document.querySelector('.form__btn--task');
@@ -13,10 +14,11 @@ var todoArray = [];
 addTaskBtn.addEventListener('click', addTaskHandler);
 output.addEventListener('click', removeTaskItem);
 clearBtn.addEventListener('click', clearAll);
-makeTodoBtn.addEventListener('click', makeTodoBtnHandler)
-rightSect.addEventListener('click', sectionHandler)
-filterBtn.addEventListener('click', filterHandler)
-window.addEventListener('load', handlePageload)
+makeTodoBtn.addEventListener('click', makeTodoBtnHandler);
+rightSect.addEventListener('click', sectionHandler);
+filterBtn.addEventListener('click', filterHandler);
+searchInput.addEventListener('keyup', searchHandler)
+window.addEventListener('load', handlePageload);
 //Handlers
 
 function addTaskHandler(event){ 
@@ -58,6 +60,10 @@ function filterHandler(event) {
     activateFilterBtn();
     filterByUrgent();
   }
+}
+
+function searchHandler() {
+  searchTitle();
 }
 
 
@@ -275,4 +281,15 @@ function activateFilterBtn() {
 
 function deactivateFilterBtn() {
   filterBtn.classList.remove('filter')
+}
+
+function searchTitle() {
+  clearCards();
+  var searchArray = [];
+  todoArray.forEach(function(todos){
+    if (todos.title.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      searchArray.push(todos)
+    }
+  })
+  displayCards(searchArray);
 }
