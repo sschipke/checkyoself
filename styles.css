@@ -23,6 +23,7 @@ aside {
 section {
   background-color: #F3F6F7;
   display: flex;
+  justify-content: space-around;
   height:100%;
   width: 70%;
 }
@@ -118,36 +119,47 @@ li {
 }
 
 .section__card {
-  background-color: peachpuff;
+  background-color: #FAFDFF;
   border: 3px solid #C7D3D8;
   display: flex;
   flex-direction: column;
-  height: 200px;
-  width: 200px;
+  height: 40vh;
+  width: 35%;
 }
 
 .card__h2 {
   border-bottom: 2px solid #C7D3D8;
+  color: #1F1F3D;
   font-size: 1.2em;
   padding: 5px;
 }
 
 .card__ul {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  margin-top: 5%;
   padding: 0;
 }
 
-.ul__li {
+.taskItem {
   display: flex;
-  color: black;
+  color: #1F1F3D;
 }
 
 .card__footer {
-  border: 2px solid #C7D3D8;
+  border-top: 2px solid #C7D3D8;
   display: flex;
   justify-content: space-between;
 }
 
+.checked {
+  color: #3C6577;
+  font-style: italic;
+}
+
 .urgent {
-  background-color: orange;
+  background-color: #FFE89D;
+  border: 2px solid #FFC30C;
+  color: #B23A25;
 }

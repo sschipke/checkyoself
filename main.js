@@ -158,7 +158,7 @@ function displayToDo(obj){
 }
 
 function populateTasks(array){
-  var uList = `<ul>`;
+  var uList = `<ul class="card__ul">`;
   array.forEach(function(task) {
     var checkPath = task.done ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
     uList += `<li class="taskItem" data-id="${task.id}"><img src="${checkPath}" class="li__img--check" alt="Icon to check off task"> ${task.text} </li>`
