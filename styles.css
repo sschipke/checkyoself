@@ -124,6 +124,7 @@ li {
   display: flex;
   flex-direction: column;
   height: 40vh;
+  padding: 1px;
   width: 35%;
 }
 
@@ -162,4 +163,12 @@ li {
   background-color: #FFE89D;
   border: 2px solid #FFC30C;
   color: #B23A25;
+}
+
+.urgent h2 {
+  border-bottom: 2px solid #FFC30C;
+}
+
+.urgent footer {
+  border-top: 2px solid #FFC30C;
 }
