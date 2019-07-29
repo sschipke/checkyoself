@@ -11,6 +11,8 @@ var rightSect = document.querySelector('section');
 var todoArray = [];
 
 //Event Listeners
+titleIn.addEventListener('keyup', disableButtonsHandler);
+taskItem.addEventListener('keyup', disableButtonsHandler)
 addTaskBtn.addEventListener('click', addTaskHandler);
 output.addEventListener('click', removeTaskItem);
 clearBtn.addEventListener('click', clearAll);
@@ -22,21 +24,16 @@ window.addEventListener('load', handlePageload);
 //Handlers
 
 function addTaskHandler(){ 
-  if (taskItem.value === '') {
-    return
-  } else {
   createTaskObj();
-  }
+  disableButtonsHandler();
 }
 
 function makeTodoBtnHandler(){
-  var tasksArray = getTasksArray();
-  if (titleIn.value !== '' || tasksArray.length !== 0) {
   createTodo();
   showMessage(todoArray, 'Start by making some tasks!');
   clearAll();
   createTasksArray();
-  }
+  disableButtonsHandler();
 }
 
 
@@ -44,6 +41,7 @@ function handlePageload() {
   createTasksArray();
   reInstTodoArray();
   showMessage(todoArray, 'Start by making some todos!');
+  disableButtonsHandler();
 }
 
 function sectionHandler() {
@@ -72,12 +70,43 @@ function searchHandler() {
   }
 }
 
+function disableButtonsHandler() {
+  disableMakeTodoBtn();
+  disableAddTaskBtn();
+  disableClearButton();
+}
+
+function disableMakeTodoBtn(){
+  var tasksArray = getTasksArray();
+  if (titleIn.value === '' || output.innerHTML === '') {
+    makeTodoBtn.disabled = true;
+  } else {
+    makeTodoBtn.disabled = false;
+  }
+}
+
+function disableAddTaskBtn() {
+  if (titleIn.value === '' || taskItem.value === '') {
+    addTaskBtn.disabled = true;
+} else {
+  addTaskBtn.disabled = false;
+  }
+}
+
+function disableClearButton() {
+  if (!titleIn.value || output.innerHTML === '') {
+    clearBtn.disabled = true;
+  } else {
+    clearBtn.disabled = false;
+  }
+}
+
 
 
 //Functions
 function addTask(obj) {
   output.insertAdjacentHTML('beforeend', 
-  ` <li class="task-to-add" data-id=${obj.id}>
+  `<li class="task-to-add" data-id=${obj.id}>
   <img src="images/delete.svg" class="li__img--dlt" alt="delete task icon"> ${obj.text}</p>
   </li>`);
   taskItem.value = '';
@@ -101,6 +130,7 @@ function removeTaskItem(e) {
     tasksArray.splice(targetIndex, 1);
     pushToStorage(tasksArray);
   }
+  disableButtonsHandler();
 }
 
 function getTasksArray() {
@@ -121,6 +151,7 @@ function clearAll() {
   output.innerHTML = '';
   title.value = '';
   taskItem.value = '';
+  disableButtonsHandler();
 }
 
 function createTodo() {

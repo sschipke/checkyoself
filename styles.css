@@ -65,6 +65,7 @@ input {
   border-color: #1f1f3d;
   border-radius: 3px 3px 3px 3px;
   font-size: 1.0em;
+  outline: none;
   height: 45px;
   padding-left: 10px;
 }
@@ -78,6 +79,11 @@ button {
   font-weight: 600;
   height: 45px;
   outline: none;
+}
+
+button:disabled {
+  background-color: #F3F6F7;
+  color: grey;
 }
 
 .body__header {
