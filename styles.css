@@ -1,15 +1,16 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
 body {
+  background-color: #F3F6F7;
   font-family: 'Open Sans', sans-serif;
 }
 
 main {
   display: flex;
-  height: 100vh;
 }
 
 
@@ -17,19 +18,18 @@ aside {
   background-color: #587A8A;
   display: flex;
   flex-direction: column;
-  width: 20%;
+  height: 90vh;
+  padding: 10px;
+  width: 25%;
 }
 
 section {
   background-color: #F3F6F7;
-  /* display: flex; */
-  /* justify-content: space-around; */
-  column-count: 2;
-  column-gap: 10%;
+  column-count: 3;
+  column-width: 13em;
   margin: 0 auto;
-  max-width: 100%;
   height:100%;
-  width: 80%;
+  width: 75%;
 }
 
 h1{ 
@@ -51,8 +51,9 @@ img {
 
 form {
   border-bottom: 2px solid #1F1F3D;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 10px;
-  padding: 10px;
 }
 
 label {
@@ -61,18 +62,22 @@ label {
 }
 
 input {
-  height: 25px;
-  outline: none;
+  border-color: #1f1f3d;
+  border-radius: 3px 3px 3px 3px;
+  font-size: 1.0em;
+  height: 45px;
+  padding-left: 10px;
 }
 
 button {
   background-color: #1F1F3D;
   border: none;
-  border-radius: 2px;
+  border-radius: 3px;
   color: #FFFFFF;
-  font-size: 1em;
+  font-size: 1.3em;
+  font-weight: 600;
+  height: 45px;
   outline: none;
-  width: 100%;
 }
 
 .body__header {
@@ -82,25 +87,42 @@ button {
   justify-content: space-between;
   padding: 10px;
 }
+.header__div {
+  border-color: #1f1f3d;
+  border-radius: 3px;
+}
+
 .header__div--img {
   background-color: #F2F6F7;
+  border-radius: 3px 0  0 3px;
+  height: 45px;
+}
+
+.header__input--search {
+  border: none;
+  border-radius: 0 3px 3px 0;
+  margin: 0;
 }
 
 #title {
-  width: 100%;
-}
-
-.form__div {
-  margin-top: 0;
-  width: 100%;
-}
-
-.form__div--img {
-  background-color: #1F1F3D;
 }
 
 #task {
-  width: 80%;
+  border-right: none;
+  border-radius: 0 3px 3px 0;
+  width: 100%;
+}
+
+.form__btn--task {
+  background-color: #1f1f3d;
+  border-radius: 0px 3px 3px 0px;
+  border-left: none;
+  color: white;
+  font-size: 3.0em;
+  height: 45px;
+  line-height: 0.1; 
+  margin-left: 0;
+  width: 51px;
 }
 
 output {
@@ -125,11 +147,10 @@ li {
 .section__card {
   background-color: #FAFDFF;
   border: 3px solid #C7D3D8;
-  display: inline-block;
-  height: 40vh;
+  break-inside: avoid;
   margin: .8em .4em .8em .4em;
   padding: 1px;
-  width: 100%;
+  width: 80%;
 }
 
 .card__h2 {
@@ -144,18 +165,23 @@ li {
   flex-direction: column;
   height: 50%;
   margin-top: 5%;
-  padding: 0;
+  padding: 0px;
 }
 
 .taskItem {
-  display: flex;
   color: #1F1F3D;
 }
 
 .card__footer {
   border-top: 2px solid #C7D3D8;
   display: flex;
+  font-size: .65em;
   justify-content: space-between;
+  padding: 3px;
+}
+
+.card__footer div {
+  flex-direction: column;
 }
 
 .checked {
@@ -166,7 +192,6 @@ li {
 .urgent {
   background-color: #FFE89D;
   border: 2px solid #FFC30C;
-  color: #B23A25;
 }
 
 .urgent h2 {
@@ -175,4 +200,8 @@ li {
 
 .urgent footer {
   border-top: 2px solid #FFC30C;
+}
+
+.urgent .div__urgent--p {
+  color: #B23A25;
 }
