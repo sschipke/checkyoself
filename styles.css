@@ -17,15 +17,19 @@ aside {
   background-color: #587A8A;
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 20%;
 }
 
 section {
   background-color: #F3F6F7;
-  display: flex;
-  justify-content: space-around;
+  /* display: flex; */
+  /* justify-content: space-around; */
+  column-count: 2;
+  column-gap: 10%;
+  margin: 0 auto;
+  max-width: 100%;
   height:100%;
-  width: 70%;
+  width: 80%;
 }
 
 h1{ 
@@ -121,11 +125,11 @@ li {
 .section__card {
   background-color: #FAFDFF;
   border: 3px solid #C7D3D8;
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
   height: 40vh;
+  margin: .8em .4em .8em .4em;
   padding: 1px;
-  width: 35%;
+  width: 100%;
 }
 
 .card__h2 {
