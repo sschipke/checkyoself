@@ -21,7 +21,7 @@ searchInput.addEventListener('keyup', searchHandler)
 window.addEventListener('load', handlePageload);
 //Handlers
 
-function addTaskHandler(event){ 
+function addTaskHandler(){ 
   if (taskItem.value === '') {
     return
   } else {
@@ -52,18 +52,24 @@ function sectionHandler() {
   updateUrgency(event);
 }
 
-function filterHandler(event) {
+function filterHandler() {
   if (filterBtn.classList.contains('filter')) { 
     deactivateFilterBtn();
-    showMessage(todoArray, 'Start by making some todos!')
+    showMessage(todoArray, 'Start by making some todos!');
+    clearSearchInput();
   } else {
+    clearSearchInput();
     activateFilterBtn();
     filterByUrgent();
   }
 }
 
 function searchHandler() {
-  searchTitle();
+  if (filterBtn.classList.contains('filter')){
+    searchUrgents();
+  } else {
+    searchTitle();
+  }
 }
 
 
@@ -292,4 +298,19 @@ function searchTitle() {
     }
   })
   displayCards(searchArray);
+}
+
+function searchUrgents() {
+  clearCards();
+  var searchUrgentArray = [];
+  todoArray.forEach(function(todos){
+    if (todos.urgent === true && todos.title.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      searchUrgentArray.push(todos);
+    }
+  })
+  displayCards(searchUrgentArray);
+}
+
+function clearSearchInput() {
+  searchInput.value = '';
 }
