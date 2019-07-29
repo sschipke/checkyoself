@@ -31,14 +31,14 @@ function addTaskHandler(){
 
 function makeTodoBtnHandler(){
   var tasksArray = getTasksArray();
-  if (titleIn.value === '' || tasksArray.length === 0) {
-  } else {
+  if (titleIn.value !== '' || tasksArray.length !== 0) {
   createTodo();
   showMessage(todoArray, 'Start by making some tasks!');
   clearAll();
   createTasksArray();
   }
 }
+
 
 function handlePageload() {
   createTasksArray();
@@ -147,36 +147,42 @@ function displayToDo(obj){
   var urgentPath = obj.urgent ? 'images/urgent-active.svg' :'images/urgent.svg';
   var urgentClass = obj.urgent ? 'urgent' : ''
   rightSect.insertAdjacentHTML('afterbegin', 
-  `<card class="section__card ${urgentClass}" data-id="${obj.id}">
+  `<article class="section__card ${urgentClass}" data-id="${obj.id}">
             <h2 class="card__h2">${obj.title}</h2>
                 ${populateTasks(obj.tasks)}</ul>
             <footer class="card__footer">
-              <img src="${urgentPath}" class="img--urgent" alt="urgent to do icon">
-              <img src="${deletePath}" class="image--delete ${deleteClass}" alt="to do delete icon">
+              <div class="footer__div--urgent">
+                <img src="${urgentPath}" class="img--urgent" alt="urgent to do icon">
+                <p class="div__urgent--p"> URGENT </p>
+              </div>
+              <div class="footer__div--delete">
+                <img src="${deletePath}" class="image--delete ${deleteClass}" alt="to do delete icon">
+                <p class="div__delete--p"> DELETE </p>
+              </div>
             </footer>
-          </card>`)
+          </article>`)
 }
 
 function populateTasks(array){
-  var uList = `<ul class="card__ul">`;
+  var uList = `<ul class>`;
   array.forEach(function(task) {
     var checkPath = task.done ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
     uList += `<li class="taskItem" data-id="${task.id}"><img src="${checkPath}" class="li__img--check" alt="Icon to check off task"> ${task.text} </li>`
-  })
-  return uList
+  });
+  return uList;
 }
 
 function displayCards(array){
   array.forEach(function(todos){
     displayToDo(todos)
-  })
+  });
 }
 
 function findTargetIndex(e, targetArray, className) {
   var id = e.target.closest('.' + className).dataset.id;
   var targetIndex = targetArray.findIndex(function(obj) {
     return parseInt(id) === obj.id
-  })
+  });
   return targetIndex;
 }
 
@@ -242,7 +248,7 @@ function clearCards() {
 }
 
 function showMessage(array, message) {
-  if (array.length === 0) {
+  if (!array.length) {
     rightSect.insertAdjacentHTML('afterbegin', `<h3 id='h3tag'>${message}</h3>`);
     return;
   } else {
@@ -261,7 +267,7 @@ if (e.target.classList.contains('img--urgent')) {
 }
 
 function changeUrgentStyle(e, targetTodo) {
-  if (targetTodo.urgent === true) {
+  if (targetTodo.urgent) {
     e.target.setAttribute('src', 'images/urgent-active.svg');
     e.target.closest('.section__card').classList.add('urgent');
   } else {
