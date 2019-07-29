@@ -22,7 +22,7 @@ aside {
 
 section {
   background-color: #F3F6F7;
-  display: grid;
+  display: flex;
   height:100%;
   width: 70%;
 }
@@ -40,7 +40,7 @@ div {
 }
 
 img {
-  height: 25px;
+  height: 35px;
   padding: 4px;
 }
 
@@ -112,6 +112,11 @@ li {
   margin: 10px 0;
 }
 
+.filter {
+  background-color: #EF4A23;
+  border: 2px solid #782616;
+}
+
 .section__card {
   background-color: peachpuff;
   border: 3px solid #C7D3D8;
@@ -141,4 +146,8 @@ li {
   border: 2px solid #C7D3D8;
   display: flex;
   justify-content: space-between;
+}
+
+.urgent {
+  background-color: orange;
 }

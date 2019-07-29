@@ -5,20 +5,23 @@ class TodoList {
     this.id = obj.id || Date.now();
     this.tasks = obj.tasks;
     this.urgent = obj.urgent || false;
+    this.delete = obj.delete || false;
   }
-  savetoStorage() {
-
-  }
-
-  deleteFromStorage() {
-
+  savetoStorage(array) {
+  localStorage.setItem('todoArray', JSON.stringify(array))
   }
 
-  updateToDo(){
+  deleteFromStorage(todoArray, neededIndex) {
+    todoArray.splice(neededIndex, 1);
+    this.savetoStorage(todoArray);
+  }
 
+  updateToDo(array){
+    this.urgent = !this.urgent;
+    this.savetoStorage(array)
   }
 
   updateTask() {
-    
+
   }
 }
