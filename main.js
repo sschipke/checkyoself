@@ -30,7 +30,7 @@ function addTaskHandler(){
 
 function makeTodoBtnHandler(){
   createTodo();
-  showMessage(todoArray, 'Start by making some tasks!');
+  showMessage(todoArray, 'You are lucky! No todos yet.');
   clearAll();
   createTasksArray();
   disableButtonsHandler();
@@ -40,7 +40,7 @@ function makeTodoBtnHandler(){
 function handlePageload() {
   createTasksArray();
   reInstTodoArray();
-  showMessage(todoArray, 'Start by making some todos!');
+  showMessage(todoArray, 'Todos go here!');
   disableButtonsHandler();
 }
 
@@ -53,7 +53,7 @@ function sectionHandler() {
 function filterHandler() {
   if (filterBtn.classList.contains('filter')) { 
     deactivateFilterBtn();
-    showMessage(todoArray, 'Start by making some todos!');
+    showMessage(todoArray, 'You are lucky! No todos yet.');
     clearSearchInput();
   } else {
     clearSearchInput();
@@ -160,7 +160,7 @@ function createTodo() {
   var todo = new TodoList({title:titleIn.value, tasks: tasksArray});
   todoArray.push(todo);
   todo.savetoStorage(todoArray);
-  showMessage(todoArray, 'Start by making some ToDos');
+  showMessage(todoArray, 'You are lucky! No todos yet.');
 }
 
 function reInstTodoArray() {
@@ -277,7 +277,7 @@ function removeTodo(e){
     var targetIndex = findTargetIndex(e, todoArray, 'section__card');
     todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
     e.target.closest('.section__card').remove();
-    showMessage(todoArray, 'Start by making some ToDos')
+    showMessage(todoArray, 'Nice Job! Nothing left to do.')
   }
 }
 

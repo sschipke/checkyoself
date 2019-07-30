@@ -149,6 +149,13 @@ li {
   color: #FFFFFF;
 }
 
+#h3tag {
+  color: #1f1f3d;
+  font-size: 3em;
+  text-decoration: underline;
+  text-decoration-color: #EF4A23;
+}
+
 .form__btn--make {
   margin-top: 15px;
 }
