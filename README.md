@@ -22,9 +22,6 @@ Check Yo' Self allows users to make To-do lists by giving each list a title as w
 
 
 ### Build
-![our_desktop](https://user-images.githubusercontent.com/48504854/61838566-25b46080-ae47-11e9-9663-23db41084934.png)
-![our_mobile1](https://user-images.githubusercontent.com/48504854/61838567-25b46080-ae47-11e9-9697-d3dd79a615e5.png)
-![our_mobile2](https://user-images.githubusercontent.com/48504854/61838568-25b46080-ae47-11e9-8d5b-216122dae848.png)
-
-## Contributors
-Anna Olsen, Scott Schipke, J. Eduardo Rodriguez
+![my_desktop](images/Build1.png)
+![my_mobile1](images/Mobile1.png)
+![my_mobile2](Mobile2.png)
