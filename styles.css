@@ -87,14 +87,14 @@ button:disabled {
 .body__header {
   background-color: #1F1F3D;
   display: flex;
-  height: 8vh;
+  height: 9vh;
   justify-content: space-between;
-  padding: 15px;
+  padding: 10px;
 }
 .header__div {
   border-color: #1f1f3d;
   border-radius: 3px;
-  margin-right: 15px;
+  margin-right: 10px;
   width: 20%;
 }
 
