@@ -109,35 +109,46 @@ button:disabled {
   margin: 0;
 }
 
-#title {
+.form__div {
+  border: 2px solid #1F1F3D;
+  border-right: none;
+  border-radius: 3px;
 }
 
 #task {
-  border-right: none;
-  border-radius: 0 3px 3px 0;
+  border: none;
   width: 100%;
 }
 
 .form__btn--task {
   background-color: #1f1f3d;
-  border-radius: 0px 3px 3px 0px;
-  border-left: none;
+  border: none;
   color: white;
   font-size: 3.0em;
+  font-weight: 300;
   height: 45px;
   line-height: 0.1; 
-  margin-left: 0;
   width: 51px;
 }
 
 output {
-  margin: auto 10px;
+  margin: 15px 0;
+}
+
+output img {
+  height: 30px;
+  margin: 0;
+  padding: 3px;
 }
 
 li {
   display: flex;
   text-decoration: none;
   color: #FFFFFF;
+}
+
+.form__btn--make {
+  margin-top: 15px;
 }
 
 .form__btn--clear {
