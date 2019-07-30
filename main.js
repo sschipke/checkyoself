@@ -44,6 +44,12 @@ function handlePageload() {
   disableButtonsHandler();
 }
 
+function disableButtonsHandler() {
+  disableMakeTodoBtn();
+  disableAddTaskBtn();
+  disableClearButton();
+}
+
 function sectionHandler() {
   toggleTaskDone(event);
   removeTodo(event);
@@ -51,14 +57,14 @@ function sectionHandler() {
 }
 
 function filterHandler() {
+  toggleFilterBtn();
   if (filterBtn.classList.contains('filter')) { 
-    deactivateFilterBtn();
-    showMessage(todoArray, 'You are lucky! No todos yet.');
     clearSearchInput();
-  } else {
-    clearSearchInput();
-    activateFilterBtn();
     filterByUrgent();
+  } else {
+    clearCards();
+    clearSearchInput();
+    showMessage(todoArray, 'Add some todos!');
   }
 }
 
@@ -70,11 +76,6 @@ function searchHandler() {
   }
 }
 
-function disableButtonsHandler() {
-  disableMakeTodoBtn();
-  disableAddTaskBtn();
-  disableClearButton();
-}
 
 function disableMakeTodoBtn(){
   var tasksArray = getTasksArray();
@@ -101,9 +102,6 @@ function disableClearButton() {
   }
 }
 
-
-
-//Functions
 function addTask(obj) {
   output.insertAdjacentHTML('beforeend', 
   `<li class="task-to-add" data-id=${obj.id}>
@@ -325,12 +323,8 @@ function filterByUrgent() {
   showMessage(urgentArray, 'Relax! No pending URGENT items.')
 }
 
-function activateFilterBtn() {
-  filterBtn.classList.add('filter');
-}
-
-function deactivateFilterBtn() {
-  filterBtn.classList.remove('filter')
+function toggleFilterBtn() {
+  filterBtn.classList.toggle('filter')  
 }
 
 function searchTitle() {
