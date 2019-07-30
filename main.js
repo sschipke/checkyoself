@@ -152,6 +152,7 @@ function clearAll() {
   title.value = '';
   taskItem.value = '';
   disableButtonsHandler();
+  createTasksArray();
 }
 
 function createTodo() {
