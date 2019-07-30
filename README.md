@@ -24,4 +24,4 @@ Check Yo' Self allows users to make To-do lists by giving each list a title as w
 ### Build
 ![my_desktop](images/Build1.png)
 ![my_mobile1](images/Mobile1.png)
-![my_mobile2](Mobile2.png)
+![my_mobile2](images/Mobile3.png)
