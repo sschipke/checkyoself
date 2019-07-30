@@ -199,7 +199,8 @@ function populateTasks(array){
   var uList = `<ul class="card__ul">`;
   array.forEach(function(task) {
     var checkPath = task.done ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
-    uList += `<li class="taskItem" data-id="${task.id}"><img src="${checkPath}" class="li__img--check" alt="Icon to check off task"> ${task.text} </li>`
+    var checkClass = task.done ? 'checked' : '' 
+    uList += `<li class="taskItem ${checkClass}" data-id="${task.id}"><img src="${checkPath}" class="li__img--check" alt="Icon to check off task"> ${task.text} </li>`
   });
   return uList;
 }
@@ -226,6 +227,7 @@ function toggleTaskDone(e){
   var tasksArray = todoArray[todoIndex].tasks;
   task.done = !task.done;
   toggleCheckbox(e, task, listIndex);
+  toggleCheckedClass(e);
   checkDeleteButton(e, tasksArray, todoArray[todoIndex]);
   todoArray[todoIndex].savetoStorage(todoArray);
   }
@@ -260,10 +262,14 @@ function toggleCheckbox(e, task, liIndex){
   var imgArray = e.target.closest('.section__card').querySelectorAll('.li__img--check');
   targetImage = imgArray[liIndex];
   if (task.done === true) {
-    targetImage.setAttribute('src', checked)
+    targetImage.setAttribute('src', checked);
   } else {
-    targetImage.setAttribute('src', unchecked)
+    targetImage.setAttribute('src', unchecked);
   }
+}
+
+function toggleCheckedClass(e) {
+  e.target.closest('.taskItem').classList.toggle('checked');
 }
 
 function removeTodo(e){
