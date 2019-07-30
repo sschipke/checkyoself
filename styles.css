@@ -216,9 +216,10 @@ li {
 .card__footer {
   border-top: 2px solid #C7D3D8;
   display: flex;
-  font-size: .65em;
+  font-size: .8em;
   justify-content: space-between;
-  padding: 3px;
+  padding: 5px;
+  padding-top: 7px;
 }
 
 .card__footer div {
@@ -226,7 +227,7 @@ li {
 }
 
 .card__footer img {
-  height: 20px;
+  height: 25px;
   padding: 0;
 }
 
