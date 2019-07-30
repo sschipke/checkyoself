@@ -30,7 +30,7 @@ function addTaskHandler(){
 
 function makeTodoBtnHandler(){
   createTodo();
-  showMessage(todoArray, 'Start by making some tasks!');
+  showMessage(todoArray, 'You are lucky! No todos yet.');
   clearAll();
   createTasksArray();
   disableButtonsHandler();
@@ -40,8 +40,14 @@ function makeTodoBtnHandler(){
 function handlePageload() {
   createTasksArray();
   reInstTodoArray();
-  showMessage(todoArray, 'Start by making some todos!');
+  showMessage(todoArray, 'Todos go here!');
   disableButtonsHandler();
+}
+
+function disableButtonsHandler() {
+  disableMakeTodoBtn();
+  disableAddTaskBtn();
+  disableClearButton();
 }
 
 function sectionHandler() {
@@ -51,14 +57,14 @@ function sectionHandler() {
 }
 
 function filterHandler() {
+  toggleFilterBtn();
   if (filterBtn.classList.contains('filter')) { 
-    deactivateFilterBtn();
-    showMessage(todoArray, 'Start by making some todos!');
     clearSearchInput();
-  } else {
-    clearSearchInput();
-    activateFilterBtn();
     filterByUrgent();
+  } else {
+    clearCards();
+    clearSearchInput();
+    showMessage(todoArray, 'Add some todos!');
   }
 }
 
@@ -70,11 +76,6 @@ function searchHandler() {
   }
 }
 
-function disableButtonsHandler() {
-  disableMakeTodoBtn();
-  disableAddTaskBtn();
-  disableClearButton();
-}
 
 function disableMakeTodoBtn(){
   var tasksArray = getTasksArray();
@@ -101,9 +102,6 @@ function disableClearButton() {
   }
 }
 
-
-
-//Functions
 function addTask(obj) {
   output.insertAdjacentHTML('beforeend', 
   `<li class="task-to-add" data-id=${obj.id}>
@@ -160,7 +158,7 @@ function createTodo() {
   var todo = new TodoList({title:titleIn.value, tasks: tasksArray});
   todoArray.push(todo);
   todo.savetoStorage(todoArray);
-  showMessage(todoArray, 'Start by making some ToDos');
+  showMessage(todoArray, 'You are lucky! No todos yet.');
 }
 
 function reInstTodoArray() {
@@ -277,7 +275,7 @@ function removeTodo(e){
     var targetIndex = findTargetIndex(e, todoArray, 'section__card');
     todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
     e.target.closest('.section__card').remove();
-    showMessage(todoArray, 'Start by making some ToDos')
+    showMessage(todoArray, 'Nice Job! Nothing left to do.')
   }
 }
 
@@ -325,12 +323,8 @@ function filterByUrgent() {
   showMessage(urgentArray, 'Relax! No pending URGENT items.')
 }
 
-function activateFilterBtn() {
-  filterBtn.classList.add('filter');
-}
-
-function deactivateFilterBtn() {
-  filterBtn.classList.remove('filter')
+function toggleFilterBtn() {
+  filterBtn.classList.toggle('filter')  
 }
 
 function searchTitle() {
