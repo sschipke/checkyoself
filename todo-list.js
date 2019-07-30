@@ -22,6 +22,6 @@ class TodoList {
   }
 
   updateTask(task) {
-    task.done = !task.done
+    task.done = !task.done;
   }
 }

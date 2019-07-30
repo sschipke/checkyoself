@@ -21,6 +21,7 @@ rightSect.addEventListener('click', sectionHandler);
 filterBtn.addEventListener('click', filterHandler);
 searchInput.addEventListener('keyup', searchHandler)
 window.addEventListener('load', handlePageload);
+
 //Handlers
 
 function addTaskHandler(){ 
@@ -76,6 +77,7 @@ function searchHandler() {
   }
 }
 
+// Functions
 
 function disableMakeTodoBtn(){
   var tasksArray = getTasksArray();
@@ -223,7 +225,7 @@ function toggleTaskDone(e){
   var listIndex = findTargetIndex(e, todoArray[todoIndex].tasks, 'taskItem');
   var task = todoArray[todoIndex].tasks[listIndex];
   var tasksArray = todoArray[todoIndex].tasks;
-  todoArray[todoIndex].updateTask(task);
+  todoArray[todoIndex].updateTask(task,todoArray);
   toggleCheckbox(e, task, listIndex);
   toggleCheckedClass(e);
   checkDeleteButton(e, tasksArray, todoArray[todoIndex]);

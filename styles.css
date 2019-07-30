@@ -147,6 +147,7 @@ output img {
 }
 
 li {
+  align-items: center;
   display: flex;
   text-decoration: none;
   color: #FFFFFF;
