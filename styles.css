@@ -27,8 +27,7 @@ section {
   background-color: #F3F6F7;
   column-count: 3;
   column-width: 13em;
-  margin: 0 auto;
-  height:100%;
+  padding: 15px;
   width: 75%;
 }
 
@@ -154,9 +153,9 @@ li {
   background-color: #FAFDFF;
   border: 3px solid #C7D3D8;
   break-inside: avoid;
-  margin: .8em .4em .8em .4em;
-  padding: 1px;
-  width: 80%;
+  margin: 5px auto;
+  padding: 2px;
+  width: 95%;
 }
 
 .card__h2 {
