@@ -31,7 +31,7 @@ function addTaskHandler(){
 
 function makeTodoBtnHandler(){
   createTodo();
-  showMessage(todoArray, 'You are lucky! No todos yet.');
+  showMessage(todoArray, 'No todos yet.');
   clearAll();
   createTasksArray();
   disableButtonsHandler();
@@ -160,7 +160,7 @@ function createTodo() {
   var todo = new TodoList({title:titleIn.value, tasks: tasksArray});
   todoArray.push(todo);
   todo.savetoStorage(todoArray);
-  showMessage(todoArray, 'You are lucky! No todos yet.');
+  showMessage(todoArray, 'No todos yet.');
 }
 
 function reInstTodoArray() {
@@ -277,7 +277,7 @@ function removeTodo(e){
     var targetIndex = findTargetIndex(e, todoArray, 'section__card');
     todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
     e.target.closest('.section__card').remove();
-    showMessage(todoArray, 'Nice Job! Nothing left to do.')
+    showMessage(todoArray, 'Nice Job! Nothing left')
   }
 }
 
@@ -322,7 +322,7 @@ function filterByUrgent() {
       urgentArray.push(urgentTodos);
     };
   });
-  showMessage(urgentArray, 'Relax! No pending URGENT items.')
+  showMessage(urgentArray, 'Relax! No URGENT items.')
 }
 
 function toggleFilterBtn() {
