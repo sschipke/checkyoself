@@ -84,6 +84,10 @@ button:disabled {
   color: grey;
 }
 
+.form__btn--task:disabled {
+  border: 5px solid #F3F6F7;
+}
+
 .body__header {
   background-color: #1F1F3D;
   display: flex;
@@ -124,8 +128,9 @@ button:disabled {
 }
 
 .form__btn--task {
+  background:url("images/plus.svg");
   background-color: #1f1f3d;
-  border: none;
+  border: 5px solid #1F1F3D;
   border-right: 2px solid #1F1F3D;
   border-radius: 0 2px 0 0;
   color: white;
