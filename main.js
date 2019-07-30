@@ -223,7 +223,7 @@ function toggleTaskDone(e){
   var listIndex = findTargetIndex(e, todoArray[todoIndex].tasks, 'taskItem');
   var task = todoArray[todoIndex].tasks[listIndex];
   var tasksArray = todoArray[todoIndex].tasks;
-  task.done = !task.done;
+  todoArray[todoIndex].updateTask(task);
   toggleCheckbox(e, task, listIndex);
   toggleCheckedClass(e);
   checkDeleteButton(e, tasksArray, todoArray[todoIndex]);

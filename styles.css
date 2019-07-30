@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition:.2s; 
 }
 
 body {
@@ -18,7 +19,7 @@ aside {
   background-color: #587A8A;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 100vh;
   width: 25%;
 }
 
@@ -93,7 +94,7 @@ button:disabled {
 .header__div {
   border-color: #1f1f3d;
   border-radius: 3px;
-  /* margin-right: 10px; */
+  margin-right: 15px;
   width: 20%;
 }
 
@@ -113,17 +114,20 @@ button:disabled {
 .form__div {
   border: 2px solid #1F1F3D;
   border-right: none;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 #task {
   border: none;
+  border-radius: 2px 0 0 0;
   width: 100%;
 }
 
 .form__btn--task {
   background-color: #1f1f3d;
   border: none;
+  border-right: 2px solid #1F1F3D;
+  border-radius: 0 2px 0 0;
   color: white;
   font-size: 3.0em;
   font-weight: 300;
@@ -249,6 +253,12 @@ li {
 }
 
 /******* Media Queries *******/
+
+@media screen and (max-width: 1050px) {
+  section {
+    column-count: 2;
+  }
+}
 
 @media screen and (max-width: 750px) {
 
