@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition:.2s; 
 }
 
 body {
@@ -18,7 +19,7 @@ aside {
   background-color: #587A8A;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 100vh;
   width: 25%;
 }
 
@@ -86,14 +87,14 @@ button:disabled {
 .body__header {
   background-color: #1F1F3D;
   display: flex;
-  height: 8vh;
+  height: 9vh;
   justify-content: space-between;
-  padding: 15px;
+  padding: 10px;
 }
 .header__div {
   border-color: #1f1f3d;
   border-radius: 3px;
-  /* margin-right: 10px; */
+  margin-right: 10px;
   width: 20%;
 }
 
@@ -113,17 +114,20 @@ button:disabled {
 .form__div {
   border: 2px solid #1F1F3D;
   border-right: none;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 #task {
   border: none;
+  border-radius: 2px 0 0 0;
   width: 100%;
 }
 
 .form__btn--task {
   background-color: #1f1f3d;
   border: none;
+  border-right: 2px solid #1F1F3D;
+  border-radius: 0 2px 0 0;
   color: white;
   font-size: 3.0em;
   font-weight: 300;
@@ -143,14 +147,17 @@ output img {
 }
 
 li {
+  align-items: center;
   display: flex;
   text-decoration: none;
   color: #FFFFFF;
 }
 
 #h3tag {
+  break-inside: avoid;
   color: #1f1f3d;
-  font-size: 3em;
+  font-size: 1.7em;
+  margin-top: 30px;
   text-decoration: underline;
   text-decoration-color: #EF4A23;
 }
@@ -211,9 +218,10 @@ li {
 .card__footer {
   border-top: 2px solid #C7D3D8;
   display: flex;
-  font-size: .65em;
+  font-size: .8em;
   justify-content: space-between;
-  padding: 3px;
+  padding: 5px;
+  padding-top: 7px;
 }
 
 .card__footer div {
@@ -221,7 +229,7 @@ li {
 }
 
 .card__footer img {
-  height: 20px;
+  height: 25px;
   padding: 0;
 }
 
@@ -249,6 +257,12 @@ li {
 }
 
 /******* Media Queries *******/
+
+@media screen and (max-width: 1050px) {
+  section {
+    column-count: 2;
+  }
+}
 
 @media screen and (max-width: 750px) {
 

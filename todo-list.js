@@ -21,7 +21,7 @@ class TodoList {
     this.savetoStorage(array)
   }
 
-  updateTask() {
-    
+  updateTask(task) {
+    task.done = !task.done;
   }
 }

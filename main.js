@@ -21,6 +21,7 @@ rightSect.addEventListener('click', sectionHandler);
 filterBtn.addEventListener('click', filterHandler);
 searchInput.addEventListener('keyup', searchHandler)
 window.addEventListener('load', handlePageload);
+
 //Handlers
 
 function addTaskHandler(){ 
@@ -30,7 +31,7 @@ function addTaskHandler(){
 
 function makeTodoBtnHandler(){
   createTodo();
-  showMessage(todoArray, 'You are lucky! No todos yet.');
+  showMessage(todoArray, 'No todos yet.');
   clearAll();
   createTasksArray();
   disableButtonsHandler();
@@ -76,6 +77,7 @@ function searchHandler() {
   }
 }
 
+// Functions
 
 function disableMakeTodoBtn(){
   var tasksArray = getTasksArray();
@@ -158,7 +160,7 @@ function createTodo() {
   var todo = new TodoList({title:titleIn.value, tasks: tasksArray});
   todoArray.push(todo);
   todo.savetoStorage(todoArray);
-  showMessage(todoArray, 'You are lucky! No todos yet.');
+  showMessage(todoArray, 'No todos yet.');
 }
 
 function reInstTodoArray() {
@@ -223,7 +225,7 @@ function toggleTaskDone(e){
   var listIndex = findTargetIndex(e, todoArray[todoIndex].tasks, 'taskItem');
   var task = todoArray[todoIndex].tasks[listIndex];
   var tasksArray = todoArray[todoIndex].tasks;
-  task.done = !task.done;
+  todoArray[todoIndex].updateTask(task,todoArray);
   toggleCheckbox(e, task, listIndex);
   toggleCheckedClass(e);
   checkDeleteButton(e, tasksArray, todoArray[todoIndex]);
@@ -275,7 +277,7 @@ function removeTodo(e){
     var targetIndex = findTargetIndex(e, todoArray, 'section__card');
     todoArray[targetIndex].deleteFromStorage(todoArray, targetIndex);
     e.target.closest('.section__card').remove();
-    showMessage(todoArray, 'Nice Job! Nothing left to do.')
+    showMessage(todoArray, 'Nice Job! Nothing left')
   }
 }
 
@@ -320,7 +322,7 @@ function filterByUrgent() {
       urgentArray.push(urgentTodos);
     };
   });
-  showMessage(urgentArray, 'Relax! No pending URGENT items.')
+  showMessage(urgentArray, 'Relax! No URGENT items.')
 }
 
 function toggleFilterBtn() {
