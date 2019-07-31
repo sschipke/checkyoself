@@ -8,7 +8,7 @@ class TodoList {
     this.delete = obj.delete || false;
   }
   savetoStorage(array) {
-  localStorage.setItem('todoArray', JSON.stringify(array))
+  localStorage.setItem('todoArray', JSON.stringify(array));
   }
 
   deleteFromStorage(todoArray, neededIndex) {
@@ -18,7 +18,7 @@ class TodoList {
 
   updateToDo(array){
     this.urgent = !this.urgent;
-    this.savetoStorage(array)
+    this.savetoStorage(array);
   }
 
   updateTask(task) {

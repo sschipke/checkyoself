@@ -1,42 +1,40 @@
-// Variables & Query Selector
-var searchInput = document.querySelector('.header__input--search')
+// Variables & Query Selectors
+var searchInput = document.querySelector('.header__input--search');
 var titleIn = document.querySelector('#title');
 var taskItem = document.querySelector('#task');
 var addTaskBtn = document.querySelector('.form__btn--task');
 var makeTodoBtn = document.querySelector('.form__btn--make');
 var output = document.querySelector('output');
 var clearBtn = document.querySelector('.form__btn--clear');
-var filterBtn = document.querySelector('.aside__button')
+var filterBtn = document.querySelector('.aside__button');
 var rightSect = document.querySelector('section');
 var todoArray = [];
 
 //Event Listeners
 titleIn.addEventListener('keyup', disableButtonsHandler);
-taskItem.addEventListener('keyup', disableButtonsHandler)
+taskItem.addEventListener('keyup', disableButtonsHandler);
 addTaskBtn.addEventListener('click', addTaskHandler);
 output.addEventListener('click', removeTaskItem);
 clearBtn.addEventListener('click', clearAll);
 makeTodoBtn.addEventListener('click', makeTodoBtnHandler);
 rightSect.addEventListener('click', sectionHandler);
 filterBtn.addEventListener('click', filterHandler);
-searchInput.addEventListener('keyup', searchHandler)
+searchInput.addEventListener('keyup', searchHandler);
 window.addEventListener('load', handlePageload);
 
 //Handlers
-
-function addTaskHandler(){ 
+function addTaskHandler() { 
   createTaskObj();
   disableButtonsHandler();
 }
 
-function makeTodoBtnHandler(){
+function makeTodoBtnHandler() {
   createTodo();
   showMessage(todoArray, 'No todos yet.');
   clearAll();
   createTasksArray();
   disableButtonsHandler();
 }
-
 
 function handlePageload() {
   createTasksArray();
@@ -78,7 +76,6 @@ function searchHandler() {
 }
 
 // Functions
-
 function disableMakeTodoBtn(){
   var tasksArray = getTasksArray();
   if (titleIn.value === '' || output.innerHTML === '') {
@@ -111,15 +108,16 @@ function addTask(obj) {
   </li>`);
   taskItem.value = '';
 }
+
 function createTaskObj(){
   var task = {
       id: Date.now(),
       text: taskItem.value,
-      done: false }
+      done: false };
     var tasksArray = JSON.parse(localStorage.getItem('tasksArray'));
     tasksArray.push(task);
-    pushToStorage(tasksArray)
-    addTask(task)
+    pushToStorage(tasksArray);
+    addTask(task);
   }
 
 function removeTaskItem(e) {
@@ -144,8 +142,6 @@ function createTasksArray(){
 function pushToStorage(array){
   localStorage.setItem('tasksArray', JSON.stringify(array));
 }
-
-
 
 function clearAll() {
   output.innerHTML = '';
@@ -175,9 +171,9 @@ function reInstTodoArray() {
 
 function displayToDo(obj){
   var deletePath = obj.delete ? 'images/delete-active.svg' : 'images/delete.svg';
-  var deleteClass = obj.delete ? 'delete--card' : ''
+  var deleteClass = obj.delete ? 'delete--card' : '';
   var urgentPath = obj.urgent ? 'images/urgent-active.svg' :'images/urgent.svg';
-  var urgentClass = obj.urgent ? 'urgent' : ''
+  var urgentClass = obj.urgent ? 'urgent' : '';
   rightSect.insertAdjacentHTML('afterbegin', 
   `<article class="section__card ${urgentClass}" data-id="${obj.id}">
             <h2 class="card__h2">${obj.title}</h2>
@@ -192,10 +188,10 @@ function displayToDo(obj){
                 <p class="div__delete--p"> DELETE </p>
               </div>
             </footer>
-          </article>`)
+          </article>`);
 }
 
-function populateTasks(array){
+function populateTasks(array) {
   var uList = `<ul class="card__ul">`;
   array.forEach(function(task) {
     var checkPath = task.done ? 'images/checkbox-active.svg' : 'images/checkbox.svg';
@@ -205,8 +201,8 @@ function populateTasks(array){
   return uList;
 }
 
-function displayCards(array){
-  array.forEach(function(todos){
+function displayCards(array) {
+  array.forEach(function(todos) {
     displayToDo(todos)
   });
 }
@@ -219,7 +215,7 @@ function findTargetIndex(e, targetArray, className) {
   return targetIndex;
 }
 
-function toggleTaskDone(e){
+function toggleTaskDone(e) {
   if (e.target.classList.contains('li__img--check')) {
   var todoIndex = findTargetIndex(e, todoArray, 'section__card');
   var listIndex = findTargetIndex(e, todoArray[todoIndex].tasks, 'taskItem');
@@ -234,8 +230,8 @@ function toggleTaskDone(e){
 }
 
 function checkDeleteButton(e,tasksArray, todo) {
-  var deleteBtn = e.target.closest('.section__card').querySelector('.image--delete')
-  if (tasksArray.every(function(tasks){
+  var deleteBtn = e.target.closest('.section__card').querySelector('.image--delete');
+  if (tasksArray.every(function(tasks) {
     return tasks.done === true
   })) {
     enableDeleteBtn(deleteBtn);
@@ -256,7 +252,7 @@ function disableDeleteBtn(button) {
   button.classList.remove('delete--card');
 }
 
-function toggleCheckbox(e, task, liIndex){
+function toggleCheckbox(e, task, liIndex) {
   var checked = 'images/checkbox-active.svg';
   var unchecked = 'images/checkbox.svg';
   var imgArray = e.target.closest('.section__card').querySelectorAll('.li__img--check');
@@ -282,7 +278,7 @@ function removeTodo(e){
 }
 
 function clearCards() {
-  rightSect.innerHTML = ''
+  rightSect.innerHTML = '';
 }
 
 function showMessage(array, message) {
@@ -291,7 +287,7 @@ function showMessage(array, message) {
     return;
   } else {
     clearCards();
-    displayCards(array)
+    displayCards(array);
   }
 }
 
@@ -317,24 +313,24 @@ function changeUrgentStyle(e, targetTodo) {
 function filterByUrgent() {
   clearCards();
   var urgentArray = [];
-  todoArray.forEach(function(urgentTodos){
-    if (urgentTodos.urgent === true){
+  todoArray.forEach(function(urgentTodos) {
+    if (urgentTodos.urgent === true) {
       urgentArray.push(urgentTodos);
     };
   });
-  showMessage(urgentArray, 'Relax! No URGENT items.')
+  showMessage(urgentArray, 'Relax! No URGENT items.');
 }
 
 function toggleFilterBtn() {
-  filterBtn.classList.toggle('filter')  
+  filterBtn.classList.toggle('filter'); 
 }
 
 function searchTitle() {
   clearCards();
   var searchArray = [];
-  todoArray.forEach(function(todos){
+  todoArray.forEach(function(todos) {
     if (todos.title.toLowerCase().includes(searchInput.value.toLowerCase())) {
-      searchArray.push(todos)
+      searchArray.push(todos);
     }
   })
   displayCards(searchArray);
@@ -343,7 +339,7 @@ function searchTitle() {
 function searchUrgents() {
   clearCards();
   var searchUrgentArray = [];
-  todoArray.forEach(function(todos){
+  todoArray.forEach(function(todos) {
     if (todos.urgent === true && todos.title.toLowerCase().includes(searchInput.value.toLowerCase())) {
       searchUrgentArray.push(todos);
     }

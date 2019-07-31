@@ -19,7 +19,7 @@ aside {
   background-color: #587A8A;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 91vh;
   width: 25%;
 }
 
@@ -30,21 +30,13 @@ section {
   width: 75%;
 }
 
-h1{ 
-  color: #FFFFFF;
-}
-
-span {
-  color: #FFC30C;
+img {
+  height: 35px;
+  padding: 4px;
 }
 
 div {
   display: flex;
-}
-
-img {
-  height: 35px;
-  padding: 4px;
 }
 
 form {
@@ -95,10 +87,21 @@ button:disabled {
   justify-content: space-between;
   padding: 10px;
 }
+
+h1{ 
+  color: #FFFFFF;
+  font-size: 3em;
+}
+
+span {
+  color: #FFC30C;
+}
+
 .header__div {
   border-color: #1f1f3d;
   border-radius: 3px;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-top: 10px;
   width: 20%;
 }
 
