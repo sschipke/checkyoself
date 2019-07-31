@@ -71,7 +71,12 @@ button {
   outline: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 button:disabled {
+  cursor: default;
   background-color: #F3F6F7;
   color: grey;
 }
@@ -202,6 +207,10 @@ li {
   width: 95%;
 }
 
+.section__card:hover {
+  box-shadow: 4px 4px 4px 4px #888888;
+}
+
 .card__h2 {
   border-bottom: 2px solid #C7D3D8;
   color: #1F1F3D;
@@ -217,6 +226,10 @@ li {
 
 .li__img--check {
   height: 30px;
+}
+
+.li__img--check:hover {
+  cursor: pointer;
 }
 
 .taskItem {
@@ -239,6 +252,14 @@ li {
 .card__footer img {
   height: 25px;
   padding: 0;
+}
+
+.img--urgent:hover {
+  cursor: pointer;
+}
+
+.delete--card:hover {
+  cursor: pointer;
 }
 
 .checked {
