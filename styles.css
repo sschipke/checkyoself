@@ -193,6 +193,10 @@ li {
   font-weight: 400;
 }
 
+.aside__button:hover {
+  background-color: #EF4A23;
+}
+
 .filter {
   background-color: #EF4A23;
   border: 2px solid #782616;
