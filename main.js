@@ -44,9 +44,9 @@ function handlePageload() {
 }
 
 function disableButtonsHandler() {
-  disableMakeTodoBtn();
   disableAddTaskBtn();
-  disableClearButton();
+  disableButton(clearBtn);
+  disableButton(makeTodoBtn);
 }
 
 function sectionHandler() {
@@ -77,7 +77,6 @@ function searchHandler() {
 
 // Functions
 function disableMakeTodoBtn(){
-  var tasksArray = getTasksArray();
   if (titleIn.value === '' || output.innerHTML === '') {
     makeTodoBtn.disabled = true;
   } else {
@@ -86,7 +85,7 @@ function disableMakeTodoBtn(){
 }
 
 function disableAddTaskBtn() {
-  if (titleIn.value === '' || taskItem.value === '') {
+  if (!titleIn.value || !taskItem.value) {
     addTaskBtn.disabled = true;
 } else {
   addTaskBtn.disabled = false;
@@ -94,10 +93,18 @@ function disableAddTaskBtn() {
 }
 
 function disableClearButton() {
-  if (!titleIn.value || output.innerHTML === '') {
+  if (!titleIn.value || !output.innerHTML) {
     clearBtn.disabled = true;
   } else {
     clearBtn.disabled = false;
+  }
+}
+
+function disableButton(button) {
+  if (!titleIn.value || !output.innerHTML) {
+    button.disabled = true;
+  } else {
+    button.disabled = false;
   }
 }
 

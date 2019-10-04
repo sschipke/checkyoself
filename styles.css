@@ -26,6 +26,7 @@ aside {
 section {
   background-color: #F3F6F7;
   column-count: 3;
+  min-height: 400px;
   padding: 15px;
   width: 75%;
 }
@@ -198,6 +199,7 @@ li {
   border: 3px solid #C7D3D8;
   break-inside: avoid;
   margin-bottom: 20px;
+  min-height: 160px;
   padding: 2px;
   width: 95%;
 }
