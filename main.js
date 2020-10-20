@@ -121,7 +121,10 @@ function createTaskObj(){
       id: Date.now(),
       text: taskItem.value,
       done: false };
-    var tasksArray = JSON.parse(localStorage.getItem('tasksArray'));
+    var tasksArray = [];
+    if(localStorage.getItem('tasksArray')) {
+      tasksArray = JSON.parse(localStorage.getItem('taskArray'))
+      }
     tasksArray.push(task);
     pushToStorage(tasksArray);
     addTask(task);
