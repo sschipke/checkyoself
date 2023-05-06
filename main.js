@@ -123,7 +123,7 @@ function createTaskObj(){
       done: false };
     var tasksArray = [];
     if(localStorage.getItem('tasksArray')) {
-      tasksArray = JSON.parse(localStorage.getItem('taskArray'))
+      tasksArray = JSON.parse(localStorage.getItem('tasksArray'))
       }
     tasksArray.push(task);
     pushToStorage(tasksArray);
